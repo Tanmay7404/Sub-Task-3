@@ -1,14 +1,12 @@
-name: Improve_pull_request_Texts
-on: pull_request
+name: `Pull Request Title Validator`
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, edited]
 
 jobs:
-  add-emoji:
+  require-valid-pr-title:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout 🛎️
-        uses: actions/checkout@v2
-
-      - name: Add emoji 🥰
-        uses: tiena2cva/action-emoji@v1
+      - uses: pragmatic-tools/pr-title-validator@1.0.0
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          pattern: 'JIRA-\d+.*'
